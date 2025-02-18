@@ -1,68 +1,53 @@
 <script setup>
-  import { ref } from 'vue';
+import { ref } from "vue";
 
-  import TheCameraRig from './TheCameraRig.vue';
-  import TheMainRoom from './TheMainRoom.vue';
-  import TheLifeCubeRoom from './TheLifeCubeRoom.vue';
-  import ThePhysicRoom from './ThePhysicRoom.vue';
+import TheCameraRig from "./TheCameraRig.vue";
+import "../aframe/square-pavage.js";
 
-  import '../aframe/simple-grab.js';
+defineProps({
+  scale: Number,
+  overlaySelector: String,
+});
 
-  defineProps({
-    scale: Number,
-    overlaySelector: String,
-  });
-
-  const allAssetsLoaded = ref(false);
+const allAssetsLoaded = ref(false);
 </script>
 
 <template>
-  <a-scene
-    background="color: black;"
-    :webxr="`
-      requiredFeatures: local-floor;
-      referenceSpaceType: local-floor;
-      optionalFeatures: dom-overlay;
-      overlayElement: ${overlaySelector};
-    `"
-    xr-mode-ui="XRMode: xr"
-    physx="
-      autoLoad: true;
-      delay: 1000;
-      useDefaultScene: false;
-      wasmUrl: lib/physx.release.wasm;
-    "
-    simple-grab
-  >
-
-    <a-assets @loaded="allAssetsLoaded = true">
-      <!--
-        Title: VR Gallery
-        Model source: https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e
-        Model author: https://sketchfab.com/mvrc.art (Maxim Mavrichev)
-        Model license: CC BY 4.0 ( https://creativecommons.org/licenses/by/4.0/ )
-      -->
-      <a-asset-item id="room" src="assets/vr_gallery.glb"></a-asset-item>
-      <!--
-        Title: 3D Gallery for VR projects
-        Model source: https://sketchfab.com/3d-models/3d-gallery-for-vr-projects-68f77ed8558c4bd59e0a13e2cc9d1fd1
-        Model author: https://sketchfab.com/tekuto1s (tekuto1s)
-        Model license: CC BY 4.0 ( https://creativecommons.org/licenses/by/4.0/ )
-      -->
-      <a-asset-item id="physic-room" src="assets/3d_gallery_for_vr_projects.glb"></a-asset-item>
-      <a-asset-item id="sound-1" response-type="arraybuffer" src="assets/sound1.mp3" preload="auto"></a-asset-item>
-      <img id="room-physic-out-texture" :src="`assets/main-room-from-physic-room.png`">
-      <img id="room-gol-out-texture" :src="`assets/main-room-from-gol-room.png`">
-      <img id="room-physic-texture" :src="`assets/physicRoom.png`">
-    </a-assets>
+  <a-scene background="color: 87CEEB;">
+    <a-assets @loaded="allAssetsLoaded = true"> </a-assets>
 
     <template v-if="allAssetsLoaded">
-      <TheMainRoom :scale="scale" />
-      <TheLifeCubeRoom />
-      <ThePhysicRoom />
+      <a-light type="ambient" color="#FFF" intensity="0.5"></a-light>
+      <a-light
+        type="directional"
+        color="#FFF"
+        intensity="1"
+        position="1 1 0"
+      ></a-light>
+
+      <a-fog color="#87CEEB" near="0" far="50"></a-fog>
+
+      <a-ocean
+        width="100"
+        depth="100"
+        amplitude="0.5"
+        amplitudeVariance="0.1"
+        position="0 -1 0"
+      ></a-ocean>
+      <a-ocean
+        width="100"
+        depth="100"
+        amplitude="0.5"
+        amplitudeVariance="0.1"
+        position="0 -1 0"
+      ></a-ocean>
+
+      <a-entity
+        square-pavage="width: 10; depth: 10;"
+        position="0 0 0"
+      ></a-entity>
     </template>
 
     <TheCameraRig />
-
   </a-scene>
 </template>
