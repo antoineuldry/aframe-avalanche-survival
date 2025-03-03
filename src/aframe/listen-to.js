@@ -2,9 +2,9 @@ AFRAME.registerComponent('listen-to', {
   multiple: true,
 
   schema: {
-    target: {type: 'selector'},
-    event: {type: 'string', default: 'click'},
-    emit: {type: 'string', default: 'click'},
+    target: { type: 'selector' },
+    event: { type: 'string', default: 'click' },
+    emit: { type: 'string', default: 'click' },
   },
 
   init: function () {

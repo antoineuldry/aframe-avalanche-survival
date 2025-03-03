@@ -10,7 +10,7 @@ import "../aframe/physx-grab.js";
   <!-- TODO : Edit speed (default 0.3) -->
   <a-entity
     id="camera-rig"
-    movement-controls="camera: #head; speed:2"
+    movement-controls="camera: #head; speed:1.5"
     disable-in-vr="component: movement-controls;"
   >
     <a-entity
@@ -30,8 +30,16 @@ import "../aframe/physx-grab.js";
         disable-in-vr="component: raycaster; disableInAR: false;"
         hide-in-vr="hideInAR: false"
       ></a-entity>
-      <a-entity id="dummy-hand-right" position="0.3 -0.4 -0.5"></a-entity>
-      <a-entity id="dummy-hand-left" position="-0.3 -0.4 -0.5"></a-entity>
+      <a-entity
+        id="dummy-hand-right"
+        rotation="90 0 0"
+        position="0.3 -0.4 -0.5"
+      ></a-entity>
+      <a-entity
+        id="dummy-hand-left"
+        rotation="90 0 0"
+        position="-0.3 -0.4 -0.5"
+      ></a-entity>
     </a-entity>
 
     <a-entity

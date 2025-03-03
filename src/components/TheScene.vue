@@ -2,6 +2,11 @@
 import { ref } from "vue";
 
 import TheCameraRig from "./TheCameraRig.vue";
+import Hatchet from "./items/Hatchet.vue";
+import Backpack from "./items/Backpack.vue";
+import BushSnow from "./objects/BushSnow.vue";
+import Flashlight from "./items/Flashlight.vue";
+
 import "../aframe/hexagon-pavage.js";
 import "../aframe/clickable.js";
 import "../aframe/event-set.js";
@@ -28,22 +33,33 @@ const allAssetsLoaded = ref(false);
         id="terrain-main"
         src="./assets/terrain/terrain-main.glb"
       ></a-asset-item>
+      <a-asset-item
+        id="pine-tree-1"
+        src="./assets/terrain/pine-tree-1.glb"
+      ></a-asset-item>
+      <a-asset-item
+        id="pine-tree-2"
+        src="./assets/terrain/pine-tree-2.glb"
+      ></a-asset-item>
+      <a-asset-item
+        id="bush-snow"
+        src="./assets/terrain/bush-snow.glb"
+      ></a-asset-item>
 
-      <!-- NPC -->
-      <a-asset-item id="fox" src="./assets/npc/fox.glb"></a-asset-item>
-      <a-asset-item id="wolf" src="./assets/npc/wolf.glb"></a-asset-item>
-      <a-asset-item id="stag" src="./assets/npc/stag.glb"></a-asset-item>
+      <!-- entities -->
+      <a-asset-item id="fox" src="./assets/entities/fox.glb"></a-asset-item>
+      <a-asset-item id="wolf" src="./assets/entities/wolf.glb"></a-asset-item>
+      <a-asset-item id="stag" src="./assets/entities/stag.glb"></a-asset-item>
       <a-asset-item
         id="snowman-monster"
-        src="./assets/npc/snowman-monster.glb"
+        src="./assets/entities/snowman-monster.glb"
       ></a-asset-item>
       <a-asset-item
         id="helicopter"
-        src="./assets/npc/helicopter.glb"
+        src="./assets/entities/helicopter.glb"
       ></a-asset-item>
 
       <!-- Interactives Items -->
-      <a-asset-item id="axe" src="./assets/interactives/axe.glb"></a-asset-item>
       <a-asset-item
         id="backpack"
         src="./assets/interactives/backpack.glb"
@@ -110,7 +126,7 @@ const allAssetsLoaded = ref(false);
       <!-- <a-sky src="#sky-night" rotation="0 180 0"> </a-sky> -->
 
       <!-- Falling Snow Weather -->
-      <!-- TODO : uncomment when needed -->
+      <!-- TODO : Snow weather uncomment when needed -->
       <!-- <a-entity bind-position="target: #head;">
         <a-entity
           gltf-model="#falling-snow"
@@ -150,6 +166,115 @@ const allAssetsLoaded = ref(false);
         rotation="0 0 0"
       ></a-entity>
 
+      <!-- Pine Trees 1 -->
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="4 4 4"
+        position="71 -2 32"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="3 3 3"
+        position="66 -2 20"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="3 3 3"
+        position="87 -1 12"
+        rotation="0 12 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="2 2 2"
+        position="73 -2 -12"
+        rotation="0 53 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="3 3 3"
+        position="30 -2 -28"
+        rotation="0 90 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="2 2 2"
+        position="29 -2 -8"
+        rotation="0 25 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="5 5 5"
+        position="3 -3 -18"
+        rotation="0 4 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="3 3 3"
+        position="7 -5 10"
+        rotation="0 -42 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-1"
+        scale="3 3 3"
+        position="3 -2 -23"
+        rotation="0 -42 0"
+      ></a-entity>
+
+      <!-- Pine Tree 2 -->
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.6 0.6 0.6"
+        position="60 -1 22"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.3 0.3 0.3"
+        position="68 -1 -7"
+        rotation="0 12 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.5 0.5 0.5"
+        position="81 -1 1"
+        rotation="0 53 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.7 0.7 0.7"
+        position="76 -1 -28"
+        rotation="0 90 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.7 0.7 0.7"
+        position="55 -1 -18"
+        rotation="0 25 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.6 0.6 0.6"
+        position="43 -1 8"
+        rotation="0 4 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.4 0.4 0.4"
+        position="28 -1 0"
+        rotation="0 -42 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#pine-tree-2"
+        scale="0.7 0.7 0.7"
+        position="15 -1 -12"
+        rotation="0 -42 0"
+      ></a-entity>
+
+      <!-- Bush Snow -->
+      <BushSnow position="6 1 -3" />
+
       <!-- Mountain Lake -->
       <a-ocean
         width="200"
@@ -168,7 +293,7 @@ const allAssetsLoaded = ref(false);
         rotation="-90 0 0"
       ></a-ocean>
 
-      <!-- NPCs -->
+      <!-- entitiess -->
       <a-entity
         gltf-model="#wolf"
         scale="0.5 0.5 0.5"
@@ -199,7 +324,7 @@ const allAssetsLoaded = ref(false);
         event-set__click="event: click; attribute: animation-mixer; value: clip:Attack;"
       ></a-entity>
 
-      <!-- TODO : uncomment when needed -->
+      <!-- TODO : Snowman uncomment when needed -->
       <!-- <a-entity
         gltf-model="#snowman-monster"
         scale="1 1 1"
@@ -208,7 +333,7 @@ const allAssetsLoaded = ref(false);
         animation-mixer="clip:Walk;"
       ></a-entity> -->
 
-      <!-- TODO : uncomment when needed -->
+      <!-- TODO : Helicopter uncomment when needed -->
       <!-- <a-entity
         gltf-model="#helicopter"
         scale="1.5 1.5 1.5"
@@ -216,23 +341,17 @@ const allAssetsLoaded = ref(false);
         rotation="0 120 0"
         animation-mixer="clip:Main;"
       ></a-entity> -->
-      <!-- End NPCs -->
+      <!-- End entitiess
 
       <!-- Test a-box pos 0 0 0 light green of 1m cube -->
       <a-box position="0 0 0" color="green" scale="1 1 1"></a-box>
-      <a-box position="0 0 -10" color="darkgreen" scale="1 1 1"></a-box>
-      <a-box position="47 0 0" color="blue" scale="1 1 1"></a-box>
-      <a-box position="47 1 10" color="lightblue" scale="1 1 1"></a-box>
-      <a-box position="47 0 -5" color="darkblue" scale="1 1 1"></a-box>
+      <a-box position="81 1 29" color="blue" scale="1 1 1"></a-box>
+      <a-box position="80 1 32" color="red" scale="1 1 1"></a-box>
 
-      <a-box position="75 0 -5" color="darkblue" scale="1 1 1"></a-box>
-      <a-box position="4 0 -5" color="darkblue" scale="1 1 1"></a-box>
-
-      <a-box position="85 0 0" color="red" scale="1 1 1"></a-box>
-      <a-box position="85 1 10" color="pink" scale="1 1 1"></a-box>
-      <a-box position="85 0 -10" color="purple" scale="1 1 1"></a-box>
-
-      <a-box position="85 21 50" color="orange" scale="1 1 1"></a-box>
+      <!-- Interactives Items -->
+      <Backpack position="2 1 -3" rotation="0 0 0" />
+      <Hatchet position="0 1 -3" rotation="0 90 0" />
+      <Flashlight position="0 1 -1" />
     </template>
 
     <TheCameraRig />
