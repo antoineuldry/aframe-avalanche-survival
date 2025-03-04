@@ -38,25 +38,22 @@ const handleGrab = (event) => {
     >
       <a-text
         value="Procédure d’Urgence
-        1. Activer immédiatement l’émetteur GPS.
-        2. Récupérer toutes vos affaires.
-        3. Chercher des ressources pour survivre et se protéger.
-        - Un feu éloigne certains dangers.
-        - Placez-le près d’une paroi pour couper le vent.
-        4. Pour allumer un feu :
 
-Bois
-Allume-feu (papier, mousse sèche, etc.)
-Source d’allumage (briquet, allumettes)
-Ne tardez pas si la nuit tombe. Se reposer est vital."
+        1. Activer immédiatement l’emetteur GPS.
+
+        2. Recuperer toutes vos affaires.
+        
+        3. Chercher des ressources pour survivre et se proteger.
+        - Un feu eloigne certains dangers.
+        - Placez-le proche d’une paroi pour couper le vent."
         position="-0.37 0.09 0.2"
         rotation="-90 0 0"
+        baseline="bottom"
         width="0.4"
         height="0.17"
-        wrap-count="20"
+        wrap-count="28"
         color="black"
         align="left"
-        baseline="top"
       ></a-text>
     </a-entity>
   </a-entity>

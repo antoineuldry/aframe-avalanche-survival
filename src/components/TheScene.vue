@@ -130,7 +130,7 @@ const allAssetsLoaded = ref(false);
 
       <!-- Falling Snow Weather -->
       <!-- TODO : Snow weather uncomment when needed -->
-      <!-- <a-entity bind-position="target: #head;">
+      <a-entity bind-position="target: #head;">
         <a-entity
           gltf-model="#falling-snow"
           scale="2 2 2"
@@ -159,7 +159,7 @@ const allAssetsLoaded = ref(false);
           rotation="0 135 0"
           animation-mixer="clip:Animation;"
         ></a-entity>
-      </a-entity> -->
+      </a-entity>
 
       <!-- Main terrain -->
       <a-entity
@@ -299,9 +299,9 @@ const allAssetsLoaded = ref(false);
       <!-- entitiess -->
       <a-entity
         gltf-model="#wolf"
-        scale="0.5 0.5 0.5"
-        position="67 33.4 54"
-        rotation="0 150 0"
+        scale="1 1 1"
+        position="67 33.4 54.9"
+        rotation="0 154 0"
         animation-mixer="clip:Idle;"
         clickable
         event-set__click="event: click; attribute: animation-mixer; value: clip:Attack;"
@@ -328,22 +328,22 @@ const allAssetsLoaded = ref(false);
       ></a-entity>
 
       <!-- TODO : Snowman uncomment when needed -->
-      <!-- <a-entity
+      <a-entity
         gltf-model="#snowman-monster"
         scale="1 1 1"
         position="60 -0.25 -23"
         rotation="0 29 0"
         animation-mixer="clip:Walk;"
-      ></a-entity> -->
+      ></a-entity>
 
       <!-- TODO : Helicopter uncomment when needed -->
-      <!-- <a-entity
+      <a-entity
         gltf-model="#helicopter"
         scale="1.5 1.5 1.5"
         position="-190 100 -440"
         rotation="0 120 0"
         animation-mixer="clip:Main;"
-      ></a-entity> -->
+      ></a-entity>
       <!-- End entitiess
 
       <!-- Test a-box pos 0 0 0 light green of 1m cube -->
@@ -362,7 +362,7 @@ const allAssetsLoaded = ref(false);
       <!-- <Matchbox position="0 1.5 -1" /> -->
       <OpenBook position="0 1 -1" />
       <!-- <WaterBottle position="0 1.5 -1" /> -->
-      <!-- <WoodPile position="0 1.5 -1" /> -->
+      <WoodPile position="0 1.5 -1" />
     </template>
 
     <TheCameraRig />
