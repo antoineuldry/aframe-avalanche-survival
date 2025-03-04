@@ -1,22 +1,18 @@
 <script setup>
-import { ref } from "vue";
-
+import { store as carryStore } from "../../stores/carryStore.js";
 import "../../aframe/simple-grab.js";
 import "../../aframe/listen-to.js";
 import "../../aframe/event-set.js";
 
 const props = defineProps({
-  position: { type: String, default: "5 -1 -23" }, // Position initiale de la lampe de poche
-  rotation: { type: String, default: "90 0 0" }, // Rotation initiale
-  scale: { type: String, default: "0.15 0.15 0.15" }, // Scale initiale
+  position: { type: String, default: "0 1 -2" }, // Position initiale de la lampe de poche
+  rotation: { type: String, default: "0 0 0" }, // Rotation initiale
+  scale: { type: String, default: "0.05 0.05 0.05" }, // Scale initiale
 });
 
-const isHeld = ref(false);
-const isOn = ref(false);
-
-function toggleLight() {
-  isOn.value = !isOn.value;
-}
+const handleGrab = (event) => {
+  carryStore.setCarryItem("flashlight", { event });
+};
 </script>
 
 <template>
@@ -24,30 +20,23 @@ function toggleLight() {
     id="flashlight-hitbox"
     :position="position"
     :rotation="rotation"
+    :scale="scale"
     clickable
     simple-grab
     visible="true"
-    geometry="primitive: box; width: 0.45; height: 0.1; depth: 0.2"
+    geometry="primitive: box; width: 3.3; height: 1; depth: 1"
     material="visible: false; color: #ff0000"
     @click="toggleLight"
+    @grab="handleGrab($event)"
   >
     <a-entity
       gltf-model="#flashlight"
-      :position="isHeld ? '0 0 0' : '0.03 0 -0.005'"
-      :rotation="isHeld ? '0 0 0' : rotation"
-      :scale="scale"
-      listen-to="target: #flashlight-hitbox; event: grab; emit: taken"
-      event-set__taken="event: taken; property: rotation; value: 90 90 0"
-    >
-      <a-light
-        v-if="isOn"
-        type="spot"
-        color="#ffffff"
-        intensity="1"
-        distance="10"
-        angle="30"
-        position="0 0 -1"
-      ></a-light>
-    </a-entity>
+      listen-to-grab="target: #flashlight-hitbox; event: grab; emit: taken"
+      listen-to-drop="target: #flashlight-hitbox; event: grab; emit: drop"
+      event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
+      event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
+      event-set__drop_rotation="event: taken; attribute: rotation; value: 0 0 0"
+      event-set__drop_position="event: taken; attribute: position; value: 0 0 0"
+    ></a-entity>
   </a-entity>
 </template>

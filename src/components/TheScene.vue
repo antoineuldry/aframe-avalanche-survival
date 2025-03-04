@@ -2,10 +2,18 @@
 import { ref } from "vue";
 
 import TheCameraRig from "./TheCameraRig.vue";
-import Hatchet from "./items/Hatchet.vue";
 import Backpack from "./items/Backpack.vue";
-import BushSnow from "./objects/BushSnow.vue";
 import Flashlight from "./items/Flashlight.vue";
+import Gps from "./items/Gps.vue";
+import Hatchet from "./items/Hatchet.vue";
+import Lighter from "./items/Lighter.vue";
+import Matchbox from "./items/Matchbox.vue";
+import OpenBook from "./items/OpenBook.vue";
+import WaterBottle from "./items/WaterBottle.vue";
+import WoodPile from "./items/WoodPile.vue";
+
+import BushSnow from "./objects/BushSnow.vue";
+import CampfireZone from "./game/CampfireZone.vue";
 
 import "../aframe/hexagon-pavage.js";
 import "../aframe/clickable.js";
@@ -22,7 +30,7 @@ const allAssetsLoaded = ref(false);
 
 <template>
   <!-- TODO : Add fog as a-scene param (e.g. : fog="type: linear; color: #AAA; near: 0; far: 70") -->
-  <a-scene stats background="color: 87CEEB;">
+  <a-scene stats background="color: #000000;">
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Sky textures -->
       <img id="sky-day" src="/assets/sky/day.jpg" />
@@ -114,14 +122,9 @@ const allAssetsLoaded = ref(false);
     <template v-if="allAssetsLoaded">
       <!-- Lights -->
       <a-light type="ambient" color="#FFF" intensity="0.4"></a-light>
-      <a-light
-        type="directional"
-        color="#FFF"
-        intensity="0.4"
-        position="1 1 0"
-      ></a-light>
 
       <!-- Skies (day/night) -->
+      <!-- TODO : Skies management -->
       <a-sky src="#sky-day" rotation="0 190 0"> </a-sky>
       <!-- <a-sky src="#sky-night" rotation="0 180 0"> </a-sky> -->
 
@@ -273,7 +276,7 @@ const allAssetsLoaded = ref(false);
       ></a-entity>
 
       <!-- Bush Snow -->
-      <BushSnow position="6 1 -3" />
+      <BushSnow />
 
       <!-- Mountain Lake -->
       <a-ocean
@@ -345,13 +348,21 @@ const allAssetsLoaded = ref(false);
 
       <!-- Test a-box pos 0 0 0 light green of 1m cube -->
       <a-box position="0 0 0" color="green" scale="1 1 1"></a-box>
-      <a-box position="81 1 29" color="blue" scale="1 1 1"></a-box>
-      <a-box position="80 1 32" color="red" scale="1 1 1"></a-box>
+      <a-box position="81 1 29" color="blue" scale="1 0.2 1"></a-box>
+      <!-- <a-box position="80 1 32" color="red" scale="1 0.2 1"></a-box> -->
+
+      <CampfireZone />
 
       <!-- Interactives Items -->
-      <Backpack position="2 1 -3" rotation="0 0 0" />
-      <Hatchet position="0 1 -3" rotation="0 90 0" />
-      <Flashlight position="0 1 -1" />
+      <!-- <Backpack position="2 1 -3" rotation="0 0 0" /> -->
+      <!-- <Hatchet position="0 1 -3" rotation="0 90 0" /> -->
+      <!-- <Flashlight position="0 1.5 -1" /> -->
+      <!-- <Gps position="0 1.5 -1" /> -->
+      <!-- <Lighter position="0 1.5 -1" /> -->
+      <!-- <Matchbox position="0 1.5 -1" /> -->
+      <OpenBook position="0 1 -1" />
+      <!-- <WaterBottle position="0 1.5 -1" /> -->
+      <!-- <WoodPile position="0 1.5 -1" /> -->
     </template>
 
     <TheCameraRig />

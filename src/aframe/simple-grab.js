@@ -4,15 +4,15 @@ import Keyboard from '../utils/keyboard.js';
 
 AFRAME.registerSystem('simple-grab', {
   schema: {
-    handRight: {type: 'selector', default: '#hand-right'},
-    handLeft: {type: 'selector', default: '#hand-left'},
-    dummyHandRight: {type: 'selector', default: '#dummy-hand-right'},
-    dummyHandLeft: {type: 'selector', default: '#dummy-hand-left'},
-    nonVrCursor: {type: 'selector', default: '[cursor]'},
-    leftDummyHandKey: {type: 'string', default: 'ShiftLeft'},
-    grabEventName:  {type: 'string', default: 'grab'},
-    dropEventName:  {type: 'string', default: 'drop'},
-    undropEventName:  {type: 'string', default: 'undrop'},
+    handRight: { type: 'selector', default: '#hand-right' },
+    handLeft: { type: 'selector', default: '#hand-left' },
+    dummyHandRight: { type: 'selector', default: '#dummy-hand-right' },
+    dummyHandLeft: { type: 'selector', default: '#dummy-hand-left' },
+    nonVrCursor: { type: 'selector', default: '[cursor]' },
+    leftDummyHandKey: { type: 'string', default: 'ShiftLeft' },
+    grabEventName: { type: 'string', default: 'grab' },
+    dropEventName: { type: 'string', default: 'drop' },
+    undropEventName: { type: 'string', default: 'undrop' },
   },
 
   init: function () {
@@ -32,9 +32,9 @@ AFRAME.registerSystem('simple-grab', {
   setCurrentGrab: function (hand, el) {
     this.currentGrab.set(hand, el);
     // Emit the grab event on: the grabbed entity, the hand and the scene
-    el.emit(this.data.grabEventName, {hand, el});
-    hand.emit(this.data.grabEventName, {hand, el});
-    this.el.emit(this.data.grabEventName, {hand, el});
+    el.emit(this.data.grabEventName, { hand, el });
+    hand.emit(this.data.grabEventName, { hand, el });
+    this.el.emit(this.data.grabEventName, { hand, el });
   },
 
   getCurrentGrab: function (hand) {
@@ -44,21 +44,21 @@ AFRAME.registerSystem('simple-grab', {
   removeCurrentGrab: function (hand, el, dropZone) {
     this.currentGrab.set(hand, null);
     // emit the drop event on: the grabbed entity, the hand, the scene and the drop zone (if any)
-    el.emit(this.data.dropEventName, {hand, el, dropZone});
-    hand.emit(this.data.dropEventName, {hand, el, dropZone});
-    if (dropZone) dropZone.emit(this.data.dropEventName, {hand, el, dropZone});
-    this.el.emit(this.data.dropEventName, {hand, el, dropZone});
+    el.emit(this.data.dropEventName, { hand, el, dropZone });
+    hand.emit(this.data.dropEventName, { hand, el, dropZone });
+    if (dropZone) dropZone.emit(this.data.dropEventName, { hand, el, dropZone });
+    this.el.emit(this.data.dropEventName, { hand, el, dropZone });
   },
 
   removeFromDropZone: function (hand, el, dropZone) {
-    dropZone.emit(this.data.undropEventName, {hand, el, dropZone});
-    this.el.emit(this.data.undropEventName, {hand, el, dropZone});
+    dropZone.emit(this.data.undropEventName, { hand, el, dropZone });
+    this.el.emit(this.data.undropEventName, { hand, el, dropZone });
   },
 
   getDummyHand: function () {
     return this.keyboard.isKeyDown(this.data.leftDummyHandKey) ?
-           this.dummyHandLeft :
-           this.dummyHandRight;
+      this.dummyHandLeft :
+      this.dummyHandRight;
   },
 
   getHand: function (evt) {
@@ -82,7 +82,7 @@ AFRAME.registerSystem('simple-grab', {
 AFRAME.registerComponent('simple-grab', {
 
   schema: {
-    event: {type: 'string', default: 'click'},
+    event: { type: 'string', default: 'click' },
   },
 
   init: function () {
@@ -142,8 +142,8 @@ AFRAME.registerComponent('simple-grab', {
 AFRAME.registerComponent('simple-grab-drop-zone', {
 
   schema: {
-    dropOnly: {type: 'boolean', default: false},
-    event: {type: 'string', default: 'click'},
+    dropOnly: { type: 'boolean', default: false },
+    event: { type: 'string', default: 'click' },
   },
 
   init: function () {
