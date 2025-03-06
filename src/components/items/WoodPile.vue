@@ -23,18 +23,19 @@ const handleGrab = (event) => {
     :scale="scale"
     clickable
     simple-grab
-    geometry="primitive: box; width: 0.3; height: 1; depth: 0.2"
+    geometry="primitive: box; width: 0.4; height: 0.35; depth: 0.47"
     material="visible: false; color: #ff0000"
     @grab="handleGrab($event)"
   >
     <a-entity
       gltf-model="#wood-pile"
+      position="0 -0.02 0"
       listen-to-grab="target: #wood-pile-hitbox; event: grab; emit: taken"
       listen-to-drop="target: #wood-pile-hitbox; event: grab; emit: drop"
       event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
       event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: taken; attribute: position; value: 0 0 0"
+      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
+      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
     ></a-entity>
   </a-entity>
 </template>

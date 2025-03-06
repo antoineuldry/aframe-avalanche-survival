@@ -34,8 +34,8 @@ const handleGrab = (event) => {
       listen-to-drop="target: #lighter-hitbox; event: grab; emit: drop"
       event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
       event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: taken; attribute: position; value: 0 0 0"
+      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
+      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
     ></a-entity>
   </a-entity>
 </template>

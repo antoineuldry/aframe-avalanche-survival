@@ -29,12 +29,13 @@ const handleGrab = (event) => {
   >
     <a-entity
       gltf-model="#hatchet"
-      listen-to-grab="target: #hatchet-hitbox; event: grab; emit: taken"
-      listen-to-drop="target: #hatchet-hitbox; event: grab; emit: drop"
+      obb-collider
+      listen-to__grab="target: #hatchet-hitbox; event: grab; emit: taken"
+      listen-to__drop="target: #hatchet-hitbox; event: grab; emit: drop"
       event-set__taken_rotation="event: taken; attribute: rotation; value: -180 -90 90"
       event-set__taken_position="event: taken; attribute: position; value: -0.05 -0.01 -0.45"
-      event-set__drop_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: taken; attribute: position; value: 0 0 0"
+      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
+      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
     ></a-entity>
   </a-entity>
 </template>

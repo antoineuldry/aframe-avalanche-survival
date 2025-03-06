@@ -33,38 +33,47 @@ const handleGrab = (event) => {
       listen-to-drop="target: #open-book-hitbox; event: grab; emit: drop"
       event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
       event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: taken; attribute: position; value: 0 0 0"
+      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
+      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
     >
       <a-text
-        value="Procédure d’Urgence
-
-        1. Activer immédiatement l’emetteur GPS.
-
-        2. Recuperer toutes vos affaires.
+        value="Emergency Procedure
         
-        3. Chercher des ressources pour survivre et se proteger.
-        - Un feu eloigne certains dangers.
-        - Placez-le proche d’une paroi pour couper le vent."
-        position="-0.37 0.09 0.2"
+        1. Activate the GPS distress signal immediately.
+        
+        2. Make sure you have all your belongings. (total of 6 items)
+        
+        3. Gather resources quickly to survive and stay safe.
+
+          - Building a fire helps keep certain dangers away.
+          - The ideal spot is near a wall or rock face to block the wind."
+        position="-0.36 0.09 0.18"
         rotation="-90 0 0"
         baseline="bottom"
         width="0.4"
         height="0.17"
-        wrap-count="28"
+        wrap-count="32"
+        color="black"
+        align="left"
+      ></a-text>
+
+      <a-text
+        value="4. To build a fire, you need:
+
+        - Wood
+        - Tinder (paper, dry moss, etc.)
+        - Ignition source (lighter, matches)
+        
+        5. Don't waste time if night is approaching. Rest is essential."
+        position="0.02 0.09 0.05"
+        rotation="-90 0 0"
+        baseline="bottom"
+        width="0.39"
+        height="0.22"
+        wrap-count="32"
         color="black"
         align="left"
       ></a-text>
     </a-entity>
   </a-entity>
-
-  <!-- <a-text
-    value="right page"
-    position="0 1 -1"
-    rotation="90 0 0"
-    scale="1 1 1"
-    color="black"
-    align="center"
-    material="side: double"
-  ></a-text> -->
 </template>
