@@ -11,7 +11,7 @@ const props = defineProps({
 });
 
 const handleGrab = (event) => {
-  carryStore.setCarryItem("open-book", { event });
+  carryStore.setCarryItem("book", { event });
 };
 </script>
 

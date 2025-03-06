@@ -46,11 +46,12 @@ function attachBackpackToPlayer() {
     clickable
     simple-grab
     geometry="primitive: box; width: 1.45; height: 1.5; depth: 0.6"
-    material="visible: false; color: #ff0000"
+    material="visible: true; color: #ff0000"
     @grab-start="attachBackpackToPlayer"
   >
     <a-entity
       gltf-model="#backpack"
+      position="0 -0.2 0"
       scale="0.5 0.5 0.5"
       listen-to="target: #backpack-hitbox; event: grab; emit: taken"
       event-set__taken="event: taken; attribute: rotation; value: 0 90 0"

@@ -1,5 +1,9 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed } from "vue";
+
+import { store as carryStore } from "../../stores/carryStore.js";
+import { store as campfireStore } from "../../stores/campfireStore.js";
+
 import "../../aframe/emit-when-near.js";
 
 const props = defineProps({
@@ -7,51 +11,33 @@ const props = defineProps({
   scale: { type: String, default: "1 1 1" },
 });
 
-const campfireLight = ref(null);
-const campfireState = ref("empty"); // States: empty, wood, book, lit
-const system = ref(null);
-const heldObject = ref(null);
-const showCampfireOff = ref(false);
-const campfireRotating = ref(true);
-
-onMounted(() => {
-  system.value = document.querySelector("a-scene").systems["simple-grab"];
+const campfireLevel = ref(0);
+const showLight = ref(false);
+// red #ff8b8b  / blue #AAAAFF
+const lightColor = ref("#ff8b8b");
+const isPlayerNear = ref(false);
+const campfireModel = computed(() => {
+  return campfireLevel >= 3 ? "#campfire-on" : "#campfire-off";
+});
+const showRotatingFire = computed(() => {
+  const item = carryStore.getCarryItem();
+  if (!item) return false;
+  return item.itemName === "wood-pile";
 });
 
-const checkHeldObject = () => {
-  if (!system.value) return;
-
-  const rightHand = document.querySelector("#hand-right");
-  const dummyHand = document.querySelector("#dummy-hand-right"); // For desktop mode
-
-  const vrHeld = system.value.getCurrentGrab(rightHand);
-  const desktopHeld = system.value.getCurrentGrab(dummyHand);
-
-  heldObject.value = vrHeld || desktopHeld;
-
-  if (heldObject.value && heldObject.value.id === "wood-pile-hitbox") {
-    showCampfireOff.value = true;
-  }
-};
-
 const onPlayerNear = () => {
-  campfireLight.value.setAttribute("intensity", "3");
-  campfireLight.value.setAttribute("penumbra", "0.2");
-  checkHeldObject(); // Vérifier l'objet tenu à l'approche de la zone
+  isPlayerNear.value = true;
 };
-
 const onPlayerFar = () => {
-  campfireLight.value.setAttribute("intensity", "0");
-  campfireLight.value.setAttribute("penumbra", "0.1");
-  showCampfireOff.value = false; // Cacher le campfire-off quand le joueur s'éloigne
+  isPlayerNear.value = false;
+  lightColor.value = "#ff8b8b";
 };
 
-const placeWood = () => {
-  if (!heldObject.value || heldObject.value.id !== "wood-pile-hitbox") return;
-  campfireState.value = "wood";
-  campfireRotating.value = false;
-  heldObject.value = null;
-  campfireLight.value.setAttribute("intensity", "0"); // Éteindre la lumière
+const handleClick = (event) => {
+  const item = carryStore.getCarryItem();
+  if (!item) return;
+
+  console.log(item.itemName);
 };
 </script>
 
@@ -65,8 +51,9 @@ const placeWood = () => {
     @campfire-far="onPlayerFar"
   >
     <a-light
+      v-if="showLight"
       type="spot"
-      color="#AAAAFF"
+      :color="lightColor"
       intensity="0"
       penumbra="0.2"
       distance="4"
@@ -76,19 +63,19 @@ const placeWood = () => {
     ></a-light>
 
     <a-entity
-      v-if="showCampfireOff"
-      gltf-model="#campfire-off"
+      v-if="showRotatingFire || campfireLevel > 0"
+      :gltf-model="campfireModel"
       scale="2 2 2"
       position="0 0.2 0"
       rotation="0 0 0"
       class="clickable"
       :animation="
-        campfireRotating
+        showRotatingFire
           ? 'property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000'
-          : ''
+          : null
       "
       clickable
-      @click="placeWood"
+      @click="handleClick($event)"
     ></a-entity>
   </a-entity>
 </template>

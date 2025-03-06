@@ -6,6 +6,8 @@ import Forest from "./terrain/Forest.vue";
 import FallingSnow from "./terrain/FallingSnow.vue";
 import Water from "./terrain/Water.vue";
 
+import { store as logsStore } from "../stores/logsStore.js";
+
 import Fox from "./entities/Fox.vue";
 import Wolf from "./entities/Wolf.vue";
 import Stag from "./entities/Stag.vue";
@@ -22,7 +24,7 @@ import OpenBook from "./items/OpenBook.vue";
 import WoodPile from "./items/WoodPile.vue";
 
 import BushSnow from "./objects/BushSnow.vue";
-import CampfireZone from "./game/CampfireZone.vue";
+import CampfireZone from "./game/CampfireZoneOld.vue";
 
 import "../aframe/clickable.js";
 import "../aframe/event-set.js";
@@ -38,7 +40,11 @@ const allAssetsLoaded = ref(false);
 
 <template>
   <!-- TODO : Add fog as a-scene param (e.g. : fog="type: linear; color: #AAA; near: 0; far: 70") -->
-  <a-scene stats background="color: #000000;">
+  <a-scene
+    stats
+    background="color: #000000;"
+    obb-collider="showColliders: false"
+  >
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Sky textures -->
       <img id="sky-day" src="/assets/sky/day.jpg" />
@@ -121,16 +127,20 @@ const allAssetsLoaded = ref(false);
 
     <template v-if="allAssetsLoaded">
       <!-- Lights -->
-      <!-- <a-light type="ambient" color="#FFF" intensity="1"></a-light> -->
+      <a-light type="ambient" color="#FFF" intensity="1"></a-light>
 
       <!-- Skies (day/night) -->
       <!-- TODO : Skies management -->
-      <!-- <a-sky src="#sky-day" rotation="0 190 0"> </a-sky> -->
+      <a-sky src="#sky-day" rotation="0 190 0"> </a-sky>
       <!-- <a-sky src="#sky-night" rotation="0 180 0"> </a-sky> -->
 
       <!-- Falling Snow Weather -->
       <!-- TODO : Snow weather uncomment when needed -->
       <!-- <FallingSnow /> -->
+
+      <template v-for="(logs, index) in logsStore.getLogs()" :key="index">
+        <WoodPile :position="logs" />
+      </template>
 
       <!-- Terrain -->
       <Terrain />
@@ -154,13 +164,13 @@ const allAssetsLoaded = ref(false);
       <CampfireZone />
 
       <!-- Interactives Items -->
-      <!-- <Backpack position="2 1 -3" rotation="0 0 0" /> -->
+      <Backpack position="2 1 -3" rotation="-90 0 0" />
       <!-- <Hatchet position="0 1.5 -1" rotation="0 90 0" /> -->
       <!-- <Flashlight position="0 1.5 -1" /> -->
       <!-- <Gps position="0 1.5 -1" /> -->
-      <!-- <Lighter position="0 1.5 -1" /> -->
-      <!-- <OpenBook position="0 1.75 -0.5" rotation="90 0 0" /> -->
-      <!-- <WoodPile position="0 1.5 -1" /> -->
+      <Lighter position="0 1.5 -1" />
+      <OpenBook position="0 1.75 -0.5" rotation="90 0 0" />
+      <WoodPile position="0 1.5 -1" />
     </template>
 
     <TheCameraRig />
