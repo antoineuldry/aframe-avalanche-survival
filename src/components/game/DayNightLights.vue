@@ -43,7 +43,7 @@ watchEffect(() => {
       type="directional"
       color="#FFFFFF"
       intensity="0.4"
-      position="40 42 -5"
+      position="10 42 -32"
     ></a-light>
   </a-entity>
 </template>

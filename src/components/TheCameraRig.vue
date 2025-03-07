@@ -7,10 +7,9 @@ import "../aframe/physx-grab.js";
 </script>
 
 <template>
-  <!-- TODO : Edit speed (default 0.3) -->
   <a-entity
     id="camera-rig"
-    movement-controls="camera: #head; speed:1.5"
+    movement-controls="camera: #head; speed:0.8"
     disable-in-vr="component: movement-controls;"
   >
     <a-entity

@@ -43,11 +43,11 @@ const allAssetsLoaded = ref(false);
 </script>
 
 <template>
-  <!-- TODO : Add fog as a-scene param (e.g. : fog="type: linear; color: #AAA; near: 0; far: 70") -->
   <a-scene
-    stats
+    _stats
     background="color: #83A8C3;"
     obb-collider="showColliders: false"
+    fog="type: linear; color: #AAA; near: 0; far: 70"
   >
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Sky textures -->
@@ -194,17 +194,10 @@ const allAssetsLoaded = ref(false);
 
     <template v-if="allAssetsLoaded">
       <!-- Lights -->
-      <!-- <a-light type="ambient" color="#FFF" intensity="0.4"></a-light> -->
       <DayNightLights />
 
-      <!-- TODO : Skies management -->
-      <!-- dark sky with opacity -->
-      <!-- <a-sky src="#sky-day" rotation="0 190 0"> </a-sky> -->
-      <!-- <a-sky src="#sky-night" rotation="0 180 0"> </a-sky> -->
-
       <!-- Falling Snow Weather -->
-      <!-- TODO : Snow weather uncomment when needed -->
-      <!-- <FallingSnow /> -->
+      <FallingSnow />
 
       <template v-for="(logs, index) in logsStore.getLogs()" :key="index">
         <WoodPile :position="logs" />
