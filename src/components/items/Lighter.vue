@@ -8,6 +8,7 @@ const props = defineProps({
   position: { type: String, default: "0.5 1 0" },
   rotation: { type: String, default: "0 0 0" },
   scale: { type: String, default: "0.1 0.1 0.1" },
+  isVisible: { type: Boolean, default: true },
 });
 
 const handleGrab = (event) => {
@@ -17,6 +18,7 @@ const handleGrab = (event) => {
 
 <template>
   <a-entity
+    v-if="isVisible"
     id="lighter-hitbox"
     :position="position"
     :rotation="rotation"
@@ -30,12 +32,12 @@ const handleGrab = (event) => {
     <a-entity
       gltf-model="#lighter"
       position="0.1 -0.3 0"
-      listen-to-grab="target: #lighter-hitbox; event: grab; emit: taken"
-      listen-to-drop="target: #lighter-hitbox; event: grab; emit: drop"
-      event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
+      listen-to__grab="target: #lighter-hitbox; event: grab; emit: taken"
+      listen-to__drop="target: #lighter-hitbox; event: drop; emit: untaken"
+      event-set__taken_rotation="event: taken; attribute: rotation; value: 0 -90 90"
+      event-set__taken_position="event: taken; attribute: position; value: -0.05 -0.01 -0.2"
+      event-set__untaken_rotation="event: untaken; attribute: rotation; value: 0 0 0"
+      event-set__untaken_position="event: untaken; attribute: position; value: 0 0 0"
     ></a-entity>
   </a-entity>
 </template>

@@ -6,8 +6,9 @@ import "../../aframe/event-set.js";
 
 const props = defineProps({
   position: { type: String, default: "1 1 4" },
-  rotation: { type: String, default: "0 0 0" },
+  rotation: { type: String, default: "90 0 0" },
   scale: { type: String, default: "0.5 0.5 0.5" },
+  isVisible: { type: Boolean, default: true },
 });
 
 const handleGrab = (event) => {
@@ -17,7 +18,8 @@ const handleGrab = (event) => {
 
 <template>
   <a-entity
-    id="open-book-hitbox"
+    v-if="isVisible"
+    id="book-hitbox"
     :position="position"
     :rotation="rotation"
     :scale="scale"
@@ -28,20 +30,20 @@ const handleGrab = (event) => {
     @grab="handleGrab($event)"
   >
     <a-entity
-      gltf-model="#open-book"
-      listen-to-grab="target: #open-book-hitbox; event: grab; emit: taken"
-      listen-to-drop="target: #open-book-hitbox; event: grab; emit: drop"
-      event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
+      gltf-model="#book"
+      listen-to__grab="target: #book-hitbox; event: grab; emit: taken"
+      listen-to__drop="target: #book-hitbox; event: drop; emit: untaken"
+      event-set__taken_rotation="event: taken; attribute: rotation; value: -30 0 0"
+      event-set__taken_position="event: taken; attribute: position; value: -0.415 -0.09 -0.18"
+      event-set__untaken_rotation="event: untaken; attribute: rotation; value: 0 0 0"
+      event-set__untaken_position="event: untaken; attribute: position; value: 0 0 0"
     >
       <a-text
         value="Emergency Procedure
         
         1. Activate the GPS distress signal immediately.
         
-        2. Make sure you have all your belongings. (total of 6 items)
+        2. Make sure you have all your belongings. (total of 5 items)
         
         3. Gather resources quickly to survive and stay safe.
 

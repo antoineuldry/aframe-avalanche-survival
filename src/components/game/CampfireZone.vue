@@ -11,13 +11,16 @@ const props = defineProps({
   scale: { type: String, default: "1 1 1" },
 });
 
+const ITEM_ORDER = ["wood-pile", "book", "lighter"];
+
 const campfireLevel = ref(0);
 const showLight = ref(false);
+const interactionDone = ref(false);
 // red #ff8b8b  / blue #AAAAFF
 const lightColor = ref("#ff8b8b");
 const isPlayerNear = ref(false);
 const campfireModel = computed(() => {
-  return campfireLevel >= 3 ? "#campfire-on" : "#campfire-off";
+  return campfireLevel.value >= 3 ? "#campfire-on" : "#campfire-off";
 });
 const showRotatingFire = computed(() => {
   const item = carryStore.getCarryItem();
@@ -27,17 +30,63 @@ const showRotatingFire = computed(() => {
 
 const onPlayerNear = () => {
   isPlayerNear.value = true;
+  if (campfireLevel >= 3) return;
+  showLight.value = true;
+  const carryItem = carryStore.getCarryItem();
+  if (!carryItem) return;
+
+  const itemIndex = ITEM_ORDER.indexOf(carryItem.itemName);
+  if (itemIndex === -1) return;
+
+  if (campfireLevel.value === itemIndex) {
+    lightColor.value = "#AAAAFF";
+  }
 };
 const onPlayerFar = () => {
   isPlayerNear.value = false;
-  lightColor.value = "#ff8b8b";
+  resetLight();
 };
 
 const handleClick = (event) => {
   const item = carryStore.getCarryItem();
   if (!item) return;
 
-  console.log(item.itemName);
+  console.log(event);
+  switch (item.itemName) {
+    case "wood-pile":
+      campfireLevel.value++;
+      resetLight();
+      destroyCarryItem(item);
+      break;
+    case "book":
+      campfireLevel.value++;
+      resetLight();
+      destroyCarryItem(item);
+      break;
+    case "lighter":
+      campfireLevel.value++;
+      resetLight();
+      break;
+    default:
+      console.log("default");
+  }
+};
+
+const resetLight = () => {
+  showLight.value = false;
+  lightColor.value = "#ff8b8b";
+};
+
+const destroyCarryItem = (item) => {
+  const el = item.details.event.detail.el;
+  if (!el) return;
+  const scene = document.querySelector("a-scene");
+  const hand = el.components["simple-grab"]?.grabbedBy;
+  if (hand) {
+    scene.systems["simple-grab"].removeCurrentGrab(hand, el);
+  }
+  el.parentNode?.removeChild(el);
+  carryStore.clearCarryItem();
 };
 </script>
 
@@ -51,10 +100,10 @@ const handleClick = (event) => {
     @campfire-far="onPlayerFar"
   >
     <a-light
-      v-if="showLight"
+      v-if="showLight && !interactionDone"
       type="spot"
       :color="lightColor"
-      intensity="0"
+      intensity="3"
       penumbra="0.2"
       distance="4"
       position="0 0.5 0"
@@ -63,20 +112,33 @@ const handleClick = (event) => {
     ></a-light>
 
     <a-entity
-      v-if="showRotatingFire || campfireLevel > 0"
+      v-if="(showRotatingFire && isPlayerNear) || campfireLevel > 0"
       :gltf-model="campfireModel"
-      scale="2 2 2"
-      position="0 0.2 0"
+      :scale="campfireModel === '#campfire-on' ? '1 1 1' : '2 2 2'"
+      :position="campfireModel === '#campfire-on' ? '0 0.33 0' : '0 0.2 0'"
       rotation="0 0 0"
       class="clickable"
       :animation="
-        showRotatingFire
+        showRotatingFire && isPlayerNear && campfireLevel === 0
           ? 'property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 10000'
           : null
       "
       clickable
       @click="handleClick($event)"
-    ></a-entity>
+    >
+      <a-light
+        v-if="campfireModel === '#campfire-on'"
+        type="spot"
+        color="#FFA500"
+        intensity="10"
+        penumbra="1"
+        distance="12"
+        position="0 1.5 0"
+        rotation="-90 0 0"
+        castShadow="true"
+        animation="property: intensity; to: 4; loop: true; dir: alternate; dur: 1000"
+      ></a-light>
+    </a-entity>
   </a-entity>
 </template>
 

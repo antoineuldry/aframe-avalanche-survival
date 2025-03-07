@@ -16,15 +16,15 @@ import Helicopter from "./entities/Helicopter.vue";
 
 import TheCameraRig from "./TheCameraRig.vue";
 import Backpack from "./items/Backpack.vue";
+import Hatchet from "./items/Hatchet.vue";
 import Flashlight from "./items/Flashlight.vue";
 import Gps from "./items/Gps.vue";
-import Hatchet from "./items/Hatchet.vue";
 import Lighter from "./items/Lighter.vue";
-import OpenBook from "./items/OpenBook.vue";
+import Book from "./items/Book.vue";
 import WoodPile from "./items/WoodPile.vue";
 
-import BushSnow from "./objects/BushSnow.vue";
-import CampfireZone from "./game/CampfireZoneOld.vue";
+import BushSnow from "./terrain/BushSnow.vue";
+import CampfireZone from "./game/CampfireZone.vue";
 
 import "../aframe/clickable.js";
 import "../aframe/event-set.js";
@@ -42,7 +42,7 @@ const allAssetsLoaded = ref(false);
   <!-- TODO : Add fog as a-scene param (e.g. : fog="type: linear; color: #AAA; near: 0; far: 70") -->
   <a-scene
     stats
-    background="color: #000000;"
+    background="color: #83A8C3;"
     obb-collider="showColliders: false"
   >
     <a-assets @loaded="allAssetsLoaded = true">
@@ -66,6 +66,10 @@ const allAssetsLoaded = ref(false);
       <a-asset-item
         id="bush-snow"
         src="./assets/terrain/bush-snow.glb"
+      ></a-asset-item>
+      <a-asset-item
+        id="navigation-mesh"
+        src="./assets/terrain/navigation-mesh.glb"
       ></a-asset-item>
 
       <!-- entities -->
@@ -108,8 +112,8 @@ const allAssetsLoaded = ref(false);
         src="./assets/interactives/lighter.glb"
       ></a-asset-item>
       <a-asset-item
-        id="open-book"
-        src="./assets/interactives/open-book.glb"
+        id="book"
+        src="./assets/interactives/book.glb"
       ></a-asset-item>
       <a-asset-item
         id="wood-pile"
@@ -127,11 +131,11 @@ const allAssetsLoaded = ref(false);
 
     <template v-if="allAssetsLoaded">
       <!-- Lights -->
-      <a-light type="ambient" color="#FFF" intensity="1"></a-light>
+      <a-light type="ambient" color="#FFF" intensity="0.4"></a-light>
 
-      <!-- Skies (day/night) -->
       <!-- TODO : Skies management -->
-      <a-sky src="#sky-day" rotation="0 190 0"> </a-sky>
+      <!-- dark sky with opacity -->
+      <!-- <a-sky src="#sky-day" rotation="0 190 0"> </a-sky> -->
       <!-- <a-sky src="#sky-night" rotation="0 180 0"> </a-sky> -->
 
       <!-- Falling Snow Weather -->
@@ -164,13 +168,20 @@ const allAssetsLoaded = ref(false);
       <CampfireZone />
 
       <!-- Interactives Items -->
-      <Backpack position="2 1 -3" rotation="-90 0 0" />
-      <!-- <Hatchet position="0 1.5 -1" rotation="0 90 0" /> -->
+      <Backpack />
       <!-- <Flashlight position="0 1.5 -1" /> -->
       <!-- <Gps position="0 1.5 -1" /> -->
-      <Lighter position="0 1.5 -1" />
-      <OpenBook position="0 1.75 -0.5" rotation="90 0 0" />
-      <WoodPile position="0 1.5 -1" />
+      <!-- <Lighter position="1 1.5 -1" /> -->
+      <!-- <Book position="0 1.75 -0.5" rotation="90 0 0" /> -->
+      <!-- <WoodPile position="0 1.5 -1" /> -->
+
+      <a-gltf-model
+        src="#navigation-mesh"
+        data-role="nav-mesh"
+        position="47 -2.5 14.56"
+        scale="0.5 0.5 0.5"
+        visible="false"
+      ></a-gltf-model>
     </template>
 
     <TheCameraRig />

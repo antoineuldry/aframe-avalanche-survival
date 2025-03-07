@@ -30,12 +30,12 @@ const handleGrab = (event) => {
     <a-entity
       gltf-model="#wood-pile"
       position="0 -0.02 0"
-      listen-to-grab="target: #wood-pile-hitbox; event: grab; emit: taken"
-      listen-to-drop="target: #wood-pile-hitbox; event: grab; emit: drop"
+      listen-to__grab="target: #wood-pile-hitbox; event: grab; emit: taken"
+      listen-to__drop="target: #wood-pile-hitbox; event: drop; emit: untaken"
       event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
       event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
+      event-set__untaken_rotation="event: untaken; attribute: rotation; value: 0 0 0"
+      event-set__untaken_position="event: untaken; attribute: position; value: 0 0 0"
     ></a-entity>
   </a-entity>
 </template>

@@ -7,7 +7,8 @@ import "../../aframe/event-set.js";
 const props = defineProps({
   position: { type: String, default: "0 1 -2" }, // Position initiale de la lampe de poche
   rotation: { type: String, default: "0 0 0" }, // Rotation initiale
-  scale: { type: String, default: "0.05 0.05 0.05" }, // Scale initiale
+  scale: { type: String, default: "0.1 0.1 0.1" }, // Scale initiale
+  isVisible: { type: Boolean, default: true }, // Visibilité initiale
 });
 
 const handleGrab = (event) => {
@@ -17,6 +18,7 @@ const handleGrab = (event) => {
 
 <template>
   <a-entity
+    v-if="isVisible"
     id="flashlight-hitbox"
     :position="position"
     :rotation="rotation"
@@ -31,12 +33,12 @@ const handleGrab = (event) => {
   >
     <a-entity
       gltf-model="#flashlight"
-      listen-to-grab="target: #flashlight-hitbox; event: grab; emit: taken"
-      listen-to-drop="target: #flashlight-hitbox; event: grab; emit: drop"
-      event-set__taken_rotation="event: taken; attribute: rotation; value: 0 0 0"
-      event-set__taken_position="event: taken; attribute: position; value: 0 0 0"
-      event-set__drop_rotation="event: drop; attribute: rotation; value: 0 0 0"
-      event-set__drop_position="event: drop; attribute: position; value: 0 0 0"
+      listen-to__grab="target: #flashlight-hitbox; event: grab; emit: taken"
+      listen-to__drop="target: #flashlight-hitbox; event: drop; emit: untaken"
+      event-set__taken_rotation="event: taken; attribute: rotation; value: 110 130 40"
+      event-set__taken_position="event: taken; attribute: position; value: -0.2 0 -0.3"
+      event-set__untaken_rotation="event: untaken; attribute: rotation; value: 0 0 0"
+      event-set__untaken_position="event: untaken; attribute: position; value: 0 0 0"
     ></a-entity>
   </a-entity>
 </template>
