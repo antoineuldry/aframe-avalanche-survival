@@ -111,18 +111,8 @@ const handleFireStart = () => {
     setTimeout(() => {
       campfireStartLitSound.value.components.sound.stopSound();
       campfireLitSound.value.components.sound.playSound();
-      // loopCampfireLit();
     }, 5000); // Après les 5 secondes du "start-lit"
   }, 3000); // Après les 3 secondes du "lighter"
-};
-
-// Fonction pour jouer le son 'sfx-campfire-lit' en boucle
-const loopCampfireLit = () => {
-  const fireSound = document.getElementById("sfx-campfire-lit");
-  if (fireSound) {
-    fireSound.loop = true; // Met le son en boucle
-    fireSound.play();
-  }
 };
 
 watchEffect(() => {
@@ -132,11 +122,6 @@ watchEffect(() => {
 });
 
 const stopCampfire = () => {
-  // Arrêter le modèle de feu et le son
-  console.log(
-    "Campfire sound data : ",
-    campfireLitSound.value.components.sound
-  );
   campfireLitSound.value.components.sound.stopSound();
   campfireLevel.value = 1;
 

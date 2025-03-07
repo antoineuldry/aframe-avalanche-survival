@@ -1,6 +1,6 @@
 <script setup>
 import { store as actionsStore } from "../../stores/actionsStore.js";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, useTemplateRef } from "vue";
 
 const props = defineProps({
   position: { type: String, default: "-190 100 -440" },
@@ -9,32 +9,22 @@ const props = defineProps({
   animation: { type: String, default: "clip:Main;" },
 });
 
-const playHelicopterSound = () => {
-  const helicopterSound = document.querySelector("#sfx-helicopter");
-  if (helicopterSound) {
-    helicopterSound.play();
-  }
-};
+const helicopterSound = useTemplateRef("sfx-helicopter");
 
 const isVisible = ref(false); // État de visibilité de l'hélicoptère
 
 // Surveiller l'état de l'action 'morning'
 watchEffect(() => {
   if (actionsStore.getIsDone("morning")) {
-    // Si l'action 'morning' est terminée, afficher l'hélicoptère et jouer le son
     isVisible.value = true;
-    playHelicopterSound();
+    helicopterSound.value.components.sound.playSound();
   }
 });
 </script>
 
 <template>
   <!-- Son de l'hélicoptère -->
-  <audio
-    id="sfx-helicopter"
-    src="./assets/sfx/sfx-helicopter.mp3"
-    loop="true"
-  ></audio>
+  <a-sound ref="sfx-helicopter" src="#sfx-helicopter" volume="8"></a-sound>
 
   <!-- Affichage de l'hélicoptère conditionné par l'état de l'action 'morning' -->
   <a-entity
@@ -44,5 +34,8 @@ watchEffect(() => {
     :rotation="rotation"
     :scale="scale"
     :animation-mixer="animation"
-  ></a-entity>
+    :animation="`property: position; to: 45 8 -10; dur: 15000; easing: easeInOutQuad`"
+    :animation__rotation="`property: rotation; to: 0 300 0; dur: 6000; easing: easeInOutQuad; delay: 10000`"
+  >
+  </a-entity>
 </template>

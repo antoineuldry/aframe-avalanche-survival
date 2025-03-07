@@ -215,16 +215,11 @@ const allAssetsLoaded = ref(false);
       <BushSnow />
 
       <!-- Entities -->
-      <!-- TODO : Snowman and Helicopter uncomment when needed -->
       <Wolf />
       <Fox />
       <Stag />
       <SnowmanMonster />
       <Helicopter />
-
-      <!-- TODO : Delete - Test a-box pos 0 0 0 light green of 1m cube -->
-      <a-box position="0 0 0" color="green" scale="1 1 1"></a-box>
-      <!-- <a-box position="81 1 29" color="blue" scale="1 0.2 1"></a-box> -->
 
       <CampfireZone v-if="actionsStore.getIsDone('emitGpsSignal')" />
       <RestZone />

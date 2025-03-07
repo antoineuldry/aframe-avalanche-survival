@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, useTemplateRef } from "vue";
 import { store as actionsStore } from "../../stores/actionsStore.js";
 import "../../aframe/emit-when-near.js";
 
@@ -15,7 +15,7 @@ const isPlayerNear = ref(false); // Vérification si le joueur est proche
 const lightColor = ref("#AAAAFF"); // Couleur de la lumière (bleu)
 const interactionDone = ref(false); // Si l'interaction a déjà eu lieu
 
-const audioElement = ref(null);
+const layingUpDownSound = useTemplateRef("sound-laying-up-down");
 
 const onPlayerNear = () => {
   isPlayerNear.value = true;
@@ -35,9 +35,9 @@ const handleSleep = () => {
     return;
   }
 
-  audioElement.value.play();
+  layingUpDownSound.value.components.sound.playSound();
   setTimeout(() => {
-    audioElement.value.pause();
+    layingUpDownSound.value.components.sound.stopSound();
   }, 1500);
 
   actionsStore.performAction("sleep");
@@ -84,12 +84,7 @@ watchEffect(() => {
     ></a-cylinder>
   </a-entity>
 
-  <audio
-    ref="audioElement"
-    id="sfx-laying-up-down"
-    src="./assets/sfx/sfx-laying-up-down.mp3"
-    volume="0.5"
-  ></audio>
+  <a-sound ref="sound-laying-up-down" src="#sfx-laying-up-down"></a-sound>
 </template>
 
 <style scoped></style>
