@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import Terrain from "./terrain/Terrain.vue";
 import Forest from "./terrain/Forest.vue";
+import DayNightLights from "./game/DayNightLights.vue";
 import FallingSnow from "./terrain/FallingSnow.vue";
 import Water from "./terrain/Water.vue";
 import NavigationMesh from "./terrain/NavigationMesh.vue";
@@ -193,7 +194,8 @@ const allAssetsLoaded = ref(false);
 
     <template v-if="allAssetsLoaded">
       <!-- Lights -->
-      <a-light type="ambient" color="#FFF" intensity="0.4"></a-light>
+      <!-- <a-light type="ambient" color="#FFF" intensity="0.4"></a-light> -->
+      <DayNightLights />
 
       <!-- TODO : Skies management -->
       <!-- dark sky with opacity -->
