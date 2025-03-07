@@ -15,7 +15,7 @@ const props = defineProps({
 
 const isVR = ref(false);
 const isActionPlayed = ref(false);
-const actionSound = useTemplateRef("action-sound");
+const gpsSound = useTemplateRef("gps-sound");
 
 const handleGrab = (event) => {
   // Joue le son de "pickup" global
@@ -40,9 +40,9 @@ const playAction = () => {
   if (isActionPlayed.value) return;
   isActionPlayed.value = true;
   actionsStore.performAction("emitGpsSignal");
-  actionSound.value.components.sound.playSound();
+  gpsSound.value.components.sound.playSound();
   setTimeout(() => {
-    actionSound.value.components.sound.stopSound();
+    gpsSound.value.components.sound.stopSound();
   }, 1000);
 };
 
@@ -91,7 +91,7 @@ watchEffect(() => {
       event-set__untaken_position="event: untaken; attribute: position; value: 0 0 0"
     >
       <a-sound
-        ref="action-sound"
+        ref="gps-sound"
         src="#sfx-gps-signal"
         positional="true"
       ></a-sound>

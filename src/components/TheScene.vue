@@ -199,6 +199,21 @@ const allAssetsLoaded = ref(false);
       <!-- Falling Snow Weather -->
       <FallingSnow />
 
+      <!-- Wind Sound -->
+      <!-- TODO : fix wind sound somewhere it doesnt have problem with movement -->
+      <!-- <a-entity bind-position="target: #head;">
+        <a-sound
+          src="#sfx-wind"
+          autoplay="true"
+          loop="true"
+          volume="0.2"
+          distanceModel="linear"
+          maxDistance="20"
+          refDistance="1"
+        ></a-sound>
+      </a-entity> -->
+
+      <!-- Logs -->
       <template v-for="(logs, index) in logsStore.getLogs()" :key="index">
         <WoodPile :position="logs" />
       </template>
