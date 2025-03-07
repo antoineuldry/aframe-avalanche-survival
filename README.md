@@ -43,7 +43,7 @@
 ### Clone (or fork, or download)
 
 ```sh
-git clone https://github.com/Chabloz/a-frame-vite-vue-boilerplate.git .
+git clone https://github.com/antoineuldry/aframe-avalanche-survival.git .
 ```
 
 ### Install dependencies

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, useTemplateRef } from "vue";
 import { store as logsStore } from "../../stores/logsStore.js";
 
 const props = defineProps({
@@ -11,10 +11,21 @@ const props = defineProps({
 
 const nbHits = ref(0);
 const isBroken = computed(() => nbHits.value >= 5);
+const chopSound = useTemplateRef("chop-sound");
 
 const handleCollision = (event) => {
   if (event.detail.withEl.id !== "hatchet") return;
+
   nbHits.value++;
+
+  if (chopSound.value) {
+    chopSound.value.components.sound.playSound();
+    setTimeout(() => {
+      if (chopSound.value) {
+        chopSound.value.components.sound.stopSound();
+      }
+    }, 250);
+  }
 
   if (isBroken.value) {
     const [x, y, z] = props.position.split(" ").map((v) => parseFloat(v));
@@ -35,7 +46,15 @@ const handleCollision = (event) => {
         @obbcollisionstarted="handleCollision($event)"
       >
       </a-entity>
+
+      <a-sound
+        ref="chop-sound"
+        src="#sfx-axe-chop-tree"
+        positional="true"
+        position="0 4 0"
+      ></a-sound>
     </a-entity>
+
     <a-entity :position="position" :rotation="rotation" :scale="scale">
       <a-gltf-model :src="model"></a-gltf-model>
     </a-entity>

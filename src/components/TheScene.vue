@@ -5,6 +5,7 @@ import Terrain from "./terrain/Terrain.vue";
 import Forest from "./terrain/Forest.vue";
 import FallingSnow from "./terrain/FallingSnow.vue";
 import Water from "./terrain/Water.vue";
+import NavigationMesh from "./terrain/NavigationMesh.vue";
 
 import { store as logsStore } from "../stores/logsStore.js";
 import { store as actionsStore } from "../stores/actionsStore.js";
@@ -26,6 +27,7 @@ import WoodPile from "./items/WoodPile.vue";
 
 import BushSnow from "./terrain/BushSnow.vue";
 import CampfireZone from "./game/CampfireZone.vue";
+import RestZone from "./game/RestZone.vue";
 
 import "../aframe/clickable.js";
 import "../aframe/event-set.js";
@@ -127,12 +129,66 @@ const allAssetsLoaded = ref(false);
         src="./assets/effects/falling-snow.glb"
       ></a-asset-item>
 
-      <!-- TODO : SFX -->
+      <!-- SFX -->
       <audio
         id="sfx-axe-chop-tree"
         src="./assets/sfx/sfx-axe-chop-tree.mp3"
       ></audio>
+      <audio
+        id="sfx-backpack-inventory"
+        src="./assets/sfx/sfx-backpack-inventory.mp3"
+      ></audio>
+      <audio
+        id="sfx-bush-shaking"
+        src="./assets/sfx/sfx-bush-shaking.mp3"
+      ></audio>
+      <audio
+        id="sfx-campfire-base"
+        src="./assets/sfx/sfx-campfire-base.mp3"
+      ></audio>
       <audio id="sfx-gps-signal" src="./assets/sfx/sfx-gps-signal.mp3"></audio>
+      <audio
+        id="sfx-campfire-book"
+        src="./assets/sfx/sfx-campfire-book.mp3"
+      ></audio>
+      <audio
+        id="sfx-item-falling-in-snow"
+        src="./assets/sfx/sfx-item-falling-in-snow.mp3"
+      ></audio>
+      <audio
+        id="sfx-item-pickup"
+        src="./assets/sfx/sfx-item-pickup.mp3"
+        positional="true"
+      ></audio>
+      <audio id="sfx-wind" src="./assets/sfx/sfx-wind.mp3"></audio>
+      <audio
+        id="sfx-campfire-lit"
+        src="./assets/sfx/sfx-campfire-lit.mp3"
+      ></audio>
+      <audio
+        id="sfx-campfire-start-lit"
+        src="./assets/sfx/sfx-campfire-start-lit.mp3"
+      ></audio>
+      <audio
+        id="sfx-flashlight-on-off"
+        src="./assets/sfx/sfx-flashlight-on-off.mp3"
+      ></audio>
+      <audio id="sfx-helicopter" src="./assets/sfx/sfx-helicopter.mp3"></audio>
+      <audio
+        id="sfx-laying-up-down"
+        src="./assets/sfx/sfx-laying-up-down.mp3"
+      ></audio>
+      <audio id="sfx-lighter" src="./assets/sfx/sfx-lighter.mp3"></audio>
+      <audio
+        id="sfx-monster-noise"
+        src="./assets/sfx/sfx-monster-noise.mp3"
+      ></audio>
+      <audio
+        id="sfx-monster-steps"
+        src="./assets/sfx/sfx-monster-steps.mp3"
+      ></audio>
+      <audio id="sfx-morning" src="./assets/sfx/sfx-morning.mp3"></audio>
+      <audio id="sfx-wolves" src="./assets/sfx/sfx-wolves.mp3"></audio>
     </a-assets>
 
     <template v-if="allAssetsLoaded">
@@ -163,31 +219,22 @@ const allAssetsLoaded = ref(false);
       <Wolf />
       <Fox />
       <Stag />
-      <!-- <SnowmanMonster />
-      <Helicopter /> -->
+      <SnowmanMonster />
+      <Helicopter />
 
       <!-- TODO : Delete - Test a-box pos 0 0 0 light green of 1m cube -->
       <a-box position="0 0 0" color="green" scale="1 1 1"></a-box>
-      <a-box position="81 1 29" color="blue" scale="1 0.2 1"></a-box>
-      <!-- <a-box position="80 1 32" color="red" scale="1 0.2 1"></a-box> -->
+      <!-- <a-box position="81 1 29" color="blue" scale="1 0.2 1"></a-box> -->
 
       <CampfireZone v-if="actionsStore.getIsDone('emitGpsSignal')" />
+      <RestZone />
 
       <!-- Interactives Items -->
       <Backpack />
       <!-- <Flashlight position="0 1.5 -1" /> -->
-      <!-- <Gps position="0 1.5 -1" /> -->
       <!-- <Lighter position="1 1.5 -1" /> -->
-      <!-- <Book position="0 1.75 -0.5" rotation="90 0 0" /> -->
-      <!-- <WoodPile position="0 1.5 -1" /> -->
 
-      <a-gltf-model
-        src="#navigation-mesh"
-        data-role="nav-mesh"
-        position="47 -2.5 14.56"
-        scale="0.5 0.5 0.5"
-        visible="false"
-      ></a-gltf-model>
+      <NavigationMesh />
     </template>
 
     <TheCameraRig />

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, useTemplateRef } from "vue";
 import InventoryOverlay from "./InventoryOverlay.vue";
 import "../../aframe/simple-grab.js";
 import "../../aframe/listen-to.js";
@@ -19,8 +19,22 @@ const items = ref([
   { name: "book", model: "#book" },
 ]);
 
+const inventorySound = useTemplateRef("inventorySound");
+
+const playInventorySound = () => {
+  if (inventorySound.value) {
+    inventorySound.value.components.sound.stopSound();
+    inventorySound.value.components.sound.playSound();
+
+    setTimeout(() => {
+      inventorySound.value.components.sound.stopSound();
+    }, 1000);
+  }
+};
+
 const toggleInventory = () => {
   inventoryVisible.value = !inventoryVisible.value;
+  playInventorySound();
 };
 </script>
 
@@ -40,6 +54,12 @@ const toggleInventory = () => {
       position="0 -0.2 0"
       scale="0.5 0.5 0.5"
     ></a-entity>
+
+    <a-sound
+      ref="inventorySound"
+      src="#sfx-backpack-inventory"
+      positional="true"
+    ></a-sound>
   </a-entity>
 
   <InventoryOverlay

@@ -1,9 +1,7 @@
 <script setup>
-import { ref, computed } from "vue";
-
+import { ref, computed, watchEffect, useTemplateRef } from "vue";
 import { store as carryStore } from "../../stores/carryStore.js";
 import { store as actionsStore } from "../../stores/actionsStore.js";
-
 import "../../aframe/emit-when-near.js";
 
 const props = defineProps({
@@ -16,9 +14,15 @@ const ITEM_ORDER = ["wood-pile", "book", "lighter"];
 const campfireLevel = ref(0);
 const showLight = ref(false);
 const interactionDone = ref(false);
-// red #ff8b8b  / blue #AAAAFF
 const lightColor = ref("#ff8b8b");
 const isPlayerNear = ref(false);
+
+const campfireBaseSound = useTemplateRef("sound-campfire-base");
+const bookSound = useTemplateRef("sound-campfire-book");
+const lighterSound = useTemplateRef("sound-lighter");
+const campfireStartLitSound = useTemplateRef("sound-campfire-start-lit");
+const campfireLitSound = useTemplateRef("sound-campfire-lit");
+
 const campfireModel = computed(() => {
   return campfireLevel.value >= 3 ? "#campfire-on" : "#campfire-off";
 });
@@ -42,6 +46,7 @@ const onPlayerNear = () => {
     lightColor.value = "#AAAAFF";
   }
 };
+
 const onPlayerFar = () => {
   isPlayerNear.value = false;
   resetLight();
@@ -54,18 +59,22 @@ const handleClick = (event) => {
   switch (item.itemName) {
     case "wood-pile":
       campfireLevel.value++;
+      campfireBaseSound.value.components.sound.playSound();
       resetLight();
       destroyCarryItem(item);
       break;
     case "book":
       campfireLevel.value++;
+      bookSound.value.components.sound.playSound();
       resetLight();
       destroyCarryItem(item);
       break;
     case "lighter":
-      campfireLevel.value++;
+      // campfireLevel.value++;
+      lighterSound.value.components.sound.playSound();
       resetLight();
       actionsStore.performAction("litFire");
+      handleFireStart(); // Déclenchement du son séquentiel du feu
       break;
     default:
       console.log("default");
@@ -88,6 +97,55 @@ const destroyCarryItem = (item) => {
   el.parentNode?.removeChild(el);
   carryStore.clearCarryItem();
 };
+
+const handleFireStart = () => {
+  lighterSound.value.components.sound.playSound();
+
+  setTimeout(() => {
+    campfireStartLitSound.value.components.sound.playSound();
+
+    setTimeout(() => {
+      campfireLevel.value++;
+    }, 3000);
+
+    setTimeout(() => {
+      campfireStartLitSound.value.components.sound.stopSound();
+      campfireLitSound.value.components.sound.playSound();
+      // loopCampfireLit();
+    }, 5000); // Après les 5 secondes du "start-lit"
+  }, 3000); // Après les 3 secondes du "lighter"
+};
+
+// Fonction pour jouer le son 'sfx-campfire-lit' en boucle
+const loopCampfireLit = () => {
+  const fireSound = document.getElementById("sfx-campfire-lit");
+  if (fireSound) {
+    fireSound.loop = true; // Met le son en boucle
+    fireSound.play();
+  }
+};
+
+watchEffect(() => {
+  if (actionsStore.getIsDone("sleep")) {
+    stopCampfire();
+  }
+});
+
+const stopCampfire = () => {
+  // Arrêter le modèle de feu et le son
+  console.log(
+    "Campfire sound data : ",
+    campfireLitSound.value.components.sound
+  );
+  campfireLitSound.value.components.sound.stopSound();
+  campfireLevel.value = 1;
+
+  // Éteindre la lumière du feu
+  const campfireLight = document.querySelector("#campfire-light");
+  if (campfireLight) {
+    campfireLight.setAttribute("intensity", 0);
+  }
+};
 </script>
 
 <template>
@@ -99,8 +157,10 @@ const destroyCarryItem = (item) => {
     @campfire-near="onPlayerNear"
     @campfire-far="onPlayerFar"
   >
+    <!-- Lumière pour le feu -->
     <a-light
       v-if="showLight && !interactionDone"
+      id="campfire-light"
       type="spot"
       :color="lightColor"
       intensity="3"
@@ -111,6 +171,7 @@ const destroyCarryItem = (item) => {
       ref="campfireLight"
     ></a-light>
 
+    <!-- Feu de camp (rotatif si nécessaire) -->
     <a-entity
       v-if="(showRotatingFire && isPlayerNear) || campfireLevel > 0"
       :gltf-model="campfireModel"
@@ -139,6 +200,30 @@ const destroyCarryItem = (item) => {
         animation="property: intensity; to: 4; loop: true; dir: alternate; dur: 1000"
       ></a-light>
     </a-entity>
+
+    <!-- Audio Elements -->
+    <a-sound
+      ref="sound-campfire-base"
+      src="#sfx-campfire-base"
+      positional="true"
+    ></a-sound>
+    <a-sound
+      ref="sound-campfire-book"
+      src="#sfx-campfire-book"
+      positional="true"
+    ></a-sound>
+    <a-sound ref="sound-lighter" src="#sfx-lighter" positional="true"></a-sound>
+    <a-sound
+      ref="sound-campfire-start-lit"
+      src="#sfx-campfire-start-lit"
+      positional="true"
+    ></a-sound>
+    <a-sound
+      ref="sound-campfire-lit"
+      src="#sfx-campfire-lit"
+      positional="true"
+      loop="true"
+    ></a-sound>
   </a-entity>
 </template>
 

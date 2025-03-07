@@ -12,6 +12,13 @@ const props = defineProps({
 });
 
 const handleGrab = (event) => {
+  // Joue le son de "pickup" global
+  const pickupSound = document.querySelector("#sfx-item-pickup");
+  if (pickupSound) {
+    pickupSound.play();
+  }
+
+  // Met à jour l'état de l'élément porté dans le store
   carryStore.setCarryItem("flashlight", { event });
 };
 </script>

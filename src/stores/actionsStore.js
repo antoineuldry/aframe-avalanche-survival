@@ -14,6 +14,10 @@ export const store = reactive({
             name: 'sleep',
             isDone: false,
         },
+        {
+            name: 'morning',
+            isDone: false,
+        }
     ],
 
     performAction(actionName) {
