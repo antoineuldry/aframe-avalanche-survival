@@ -106,7 +106,7 @@ const handleFireStart = () => {
 
     setTimeout(() => {
       campfireLevel.value++;
-    }, 3000);
+    }, 1500);
 
     setTimeout(() => {
       campfireStartLitSound.value.components.sound.stopSound();
