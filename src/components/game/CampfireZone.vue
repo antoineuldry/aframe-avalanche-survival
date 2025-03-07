@@ -2,7 +2,7 @@
 import { ref, computed } from "vue";
 
 import { store as carryStore } from "../../stores/carryStore.js";
-import { store as campfireStore } from "../../stores/campfireStore.js";
+import { store as actionsStore } from "../../stores/actionsStore.js";
 
 import "../../aframe/emit-when-near.js";
 
@@ -51,7 +51,6 @@ const handleClick = (event) => {
   const item = carryStore.getCarryItem();
   if (!item) return;
 
-  console.log(event);
   switch (item.itemName) {
     case "wood-pile":
       campfireLevel.value++;
@@ -66,6 +65,7 @@ const handleClick = (event) => {
     case "lighter":
       campfireLevel.value++;
       resetLight();
+      actionsStore.performAction("litFire");
       break;
     default:
       console.log("default");

@@ -1,7 +1,8 @@
 <p align="center">
     <img src="./logo.svg" alt="VAV Logo" align="center"/>
 </p>
-<h1 align="center">Vue + A-Frame + Vite boilerplate</h1>
+<h1 align="center">The Last Breath</h1>
+<h2 align="center">🏔️ VR Avalanche Survival Game ❄️</h2>
 
 > A boilerplate for A-Frame 1.6, Vue 3.5 and Vite 5.0
 
@@ -10,7 +11,7 @@
 ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-### [>> DEMO <<](https://onivers.com/aframe-vue-boilerplate/)
+### [>> DEMO <<](https://antoineuldry.github.io/aframe-avalanche-survival/)
 
 ## Included in the boilerplate
 

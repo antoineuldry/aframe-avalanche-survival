@@ -1,5 +1,7 @@
 <script setup>
+import { ref, onMounted, watchEffect, useTemplateRef } from "vue";
 import { store as carryStore } from "../../stores/carryStore.js";
+import { store as actionsStore } from "../../stores/actionsStore.js";
 import "../../aframe/simple-grab.js";
 import "../../aframe/listen-to.js";
 import "../../aframe/event-set.js";
@@ -11,9 +13,52 @@ const props = defineProps({
   isVisible: { type: Boolean, default: true },
 });
 
+const isVR = ref(false);
+const isActionPlayed = ref(false);
+const actionSound = useTemplateRef("action-sound");
+
 const handleGrab = (event) => {
   carryStore.setCarryItem("gps", { event });
 };
+
+onMounted(() => {
+  document.querySelector("a-scene").addEventListener("enter-vr", () => {
+    isVR.value = true;
+  });
+  document.querySelector("a-scene").addEventListener("exit-vr", () => {
+    isVR.value = false;
+  });
+});
+
+const playAction = () => {
+  if (isActionPlayed.value) return;
+  isActionPlayed.value = true;
+  actionsStore.performAction("emitGpsSignal");
+  actionSound.value.components.sound.playSound();
+  setTimeout(() => {
+    actionSound.value.components.sound.stopSound();
+  }, 1000);
+};
+
+watchEffect(() => {
+  if (isVR.value) {
+    // VR mode
+    document
+      .querySelector("#hand-right")
+      .addEventListener("buttondown", (event) => {
+        if (carryStore.getCarryItem()?.itemName === "gps") {
+          playAction();
+        }
+      });
+  } else {
+    // NON VR mode
+    document.addEventListener("mousedown", (event) => {
+      if (event.button === 2 && carryStore.getCarryItem()?.itemName === "gps") {
+        playAction();
+      }
+    });
+  }
+});
 </script>
 
 <template>
@@ -38,6 +83,12 @@ const handleGrab = (event) => {
       event-set__taken_position="event: taken; attribute: position; value: -1.8 0 2.3"
       event-set__untaken_rotation="event: untaken; attribute: rotation; value: 0 0 0"
       event-set__untaken_position="event: untaken; attribute: position; value: 0 0 0"
-    ></a-entity>
+    >
+      <a-sound
+        ref="action-sound"
+        src="#sfx-gps-signal"
+        positional="true"
+      ></a-sound>
+    </a-entity>
   </a-entity>
 </template>

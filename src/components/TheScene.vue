@@ -7,6 +7,7 @@ import FallingSnow from "./terrain/FallingSnow.vue";
 import Water from "./terrain/Water.vue";
 
 import { store as logsStore } from "../stores/logsStore.js";
+import { store as actionsStore } from "../stores/actionsStore.js";
 
 import Fox from "./entities/Fox.vue";
 import Wolf from "./entities/Wolf.vue";
@@ -127,6 +128,11 @@ const allAssetsLoaded = ref(false);
       ></a-asset-item>
 
       <!-- TODO : SFX -->
+      <audio
+        id="sfx-axe-chop-tree"
+        src="./assets/sfx/sfx-axe-chop-tree.mp3"
+      ></audio>
+      <audio id="sfx-gps-signal" src="./assets/sfx/sfx-gps-signal.mp3"></audio>
     </a-assets>
 
     <template v-if="allAssetsLoaded">
@@ -165,7 +171,7 @@ const allAssetsLoaded = ref(false);
       <a-box position="81 1 29" color="blue" scale="1 0.2 1"></a-box>
       <!-- <a-box position="80 1 32" color="red" scale="1 0.2 1"></a-box> -->
 
-      <CampfireZone />
+      <CampfireZone v-if="actionsStore.getIsDone('emitGpsSignal')" />
 
       <!-- Interactives Items -->
       <Backpack />
