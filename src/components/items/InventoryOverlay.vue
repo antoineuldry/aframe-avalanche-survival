@@ -48,6 +48,14 @@ watch(
     :rotation="props.rotation"
     @click="handleClose"
     v-if="isVisible"
+  >
+    <a-light
+      v-if="isVisible"
+      type="point"
+      color="#ffffff"
+      intensity="0.5"
+      position="0 2 0"
+    ></a-light
   ></a-plane>
 
   <!-- Grille -->

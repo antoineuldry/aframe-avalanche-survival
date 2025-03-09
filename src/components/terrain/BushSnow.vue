@@ -15,6 +15,7 @@ const props = defineProps({
 const hatchetVisible = ref(false);
 const bushSound = useTemplateRef("bushSound");
 const hatchetFallSound = useTemplateRef("hatchetFallSound");
+const interactionDone = ref(false); // État pour suivre si l'interaction a déjà eu lieu
 
 const playBushSound = () => {
   if (bushSound.value) {
@@ -37,6 +38,9 @@ const playHatchetFallSound = () => {
 };
 
 const onBushClick = () => {
+  if (interactionDone.value) return; // Ne rien faire si l'interaction a déjà eu lieu
+
+  interactionDone.value = true; // Marquer l'interaction comme terminée
   playBushSound();
   playHatchetFallSound();
   setTimeout(() => {

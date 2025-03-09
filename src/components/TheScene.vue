@@ -19,11 +19,6 @@ import Helicopter from "./entities/Helicopter.vue";
 
 import TheCameraRig from "./TheCameraRig.vue";
 import Backpack from "./items/Backpack.vue";
-import Hatchet from "./items/Hatchet.vue";
-import Flashlight from "./items/Flashlight.vue";
-import Gps from "./items/Gps.vue";
-import Lighter from "./items/Lighter.vue";
-import Book from "./items/Book.vue";
 import WoodPile from "./items/WoodPile.vue";
 
 import BushSnow from "./terrain/BushSnow.vue";
@@ -47,7 +42,7 @@ const allAssetsLoaded = ref(false);
     _stats
     background="color: #83A8C3;"
     obb-collider="showColliders: false"
-    fog="type: linear; color: #AAA; near: 0; far: 70"
+    fog="type: linear; color: #999999; near: 0; far: 70"
   >
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Sky textures -->
@@ -236,6 +231,7 @@ const allAssetsLoaded = ref(false);
 
       <!-- Interactives Items -->
       <Backpack />
+      <!-- TODO : Add lights on Flashlight and Lighter -->
       <!-- <Flashlight position="0 1.5 -1" /> -->
       <!-- <Lighter position="1 1.5 -1" /> -->
 

@@ -23,10 +23,14 @@ watchEffect(() => {
 </script>
 
 <template>
-  <!-- Son de l'hélicoptère -->
-  <a-sound ref="sfx-helicopter" src="#sfx-helicopter" volume="8"></a-sound>
+  <!-- TODO : Attach sound to helicopter entity -->
+  <a-sound
+    ref="sfx-helicopter"
+    src="#sfx-helicopter"
+    positional="true"
+    volume="8"
+  ></a-sound>
 
-  <!-- Affichage de l'hélicoptère conditionné par l'état de l'action 'morning' -->
   <a-entity
     v-if="isVisible"
     gltf-model="#helicopter"

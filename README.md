@@ -29,10 +29,39 @@
 - **Mobile** – 1x Finger touch to go forward + 2x Fingers touch to go backward + Gaze cursor for click
 - **VR/AR** – walk + Teleport (Grip for grab and laser for click) + Gaze cursor for click in AR
 
-### 3D models
+### 3D Models
 
-- **Main room** – [VR Gallery](https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e) by [Maxim Mavrichev](https://sketchfab.com/mvrc.art) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **3D physic room** – [3d_gallery_for_vr_projects](https://sketchfab.com/3d-models/3d-gallery-for-vr-projects-68f77ed8558c4bd59e0a13e2cc9d1fd1) by [tekuto1s](https://sketchfab.com/tekuto1s) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+#### Effects
+
+- **Falling snow loop** – [Falling snow loop](https://sketchfab.com/3d-models/falling-snow-loop-a19b97d7e64548b998eaeb4d8477c24c) by [Elin Hohler](https://sketchfab.com/ElinHohler) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+
+#### Entities
+
+- **Fox** – [Fox](https://poly.pizza/m/Bc97C66HKi) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Helicopter** – [Low Poly Helicopter](https://sketchfab.com/3d-models/low-poly-helicopter-5bbed2de9baa4a13a7faa72653b78b64) by [Anton Moek](https://sketchfab.com/antonmoek) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **Snowman-Monster** – [Snowman-Monster](https://sketchfab.com/3d-models/snowman-monster-e49e299a729e43928b5817b6c28158ad) by [Batuhan13](https://sketchfab.com/Batuhan13) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **Stag** – [Stag](https://poly.pizza/m/tQdzbZ1uP) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Wolf** – [Wolf](https://poly.pizza/m/XE46OqPyk) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+#### Interactives
+
+- **Backpack** – [Backpack](https://poly.pizza/m/2g9Jm7kvIU) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Book** – [Book](https://poly.pizza/m/FsCIGEfTEs) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Campfire (off)** – [Base campfire](https://poly.pizza/m/9-y1lYsX0Lx) by [Kris P](https://poly.pizza/u/Kris%20P) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **Campfire (on)** – [Campfire](https://poly.pizza/m/0vzzmM-t8CP) by [Poly by Google](https://poly.pizza/u/Poly%20by%20Google) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **Flashlight** – [Flashlight](https://poly.pizza/m/4fbaKPvM0Ss) by [Poly by Google](https://poly.pizza/u/Poly%20by%20Google) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **GPS Emitter (Walkie Talkie)** – [Walkie talkie](https://poly.pizza/m/aYdn7ZZaYqa) by [Poly by Google](https://poly.pizza/u/Poly%20by%20Google) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **Hatchet** – [Hatchet](https://poly.pizza/m/aJ2yTQPbS34) by [zeoxo](https://poly.pizza/u/zeoxo) is licensed under [CC Attribution](https://creativecommons.org/licenses/by/4.0/)
+- **Lighter** – [Lighter](https://poly.pizza/m/t8AmON8X5a) by [MaverickFX](https://poly.pizza/u/MaverickFX) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Wood pile** – [Wood pile](https://poly.pizza/m/ajBNpMsQ8z) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+#### Terrain
+
+- **Bush (snow)** – [Bush (snow)](https://poly.pizza/m/H4IEAwYl1z) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Pine Tree 1** – [Pine Tree](https://poly.pizza/m/JdK7IY0zLQ) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Pine Tree 2** – [Pine Tree](https://poly.pizza/m/gQW9YrxVXq) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Terrain** – [Terrain](https://poly.pizza/m/XK89PJn7WQ) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
+- **Forest** – [Forest](https://poly.pizza/m/ZK67JY0mLQ) by [Quaternius](https://poly.pizza/u/Quaternius) is licensed under [Public Domain (CC0)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 ---
 

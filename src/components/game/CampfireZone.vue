@@ -70,7 +70,6 @@ const handleClick = (event) => {
       destroyCarryItem(item);
       break;
     case "lighter":
-      // campfireLevel.value++;
       lighterSound.value.components.sound.playSound();
       resetLight();
       actionsStore.performAction("litFire");
@@ -186,7 +185,7 @@ const stopCampfire = () => {
       ></a-light>
     </a-entity>
 
-    <!-- Audio Elements -->
+    <!-- TODO : Attach sound to campfire entity -->
     <a-sound
       ref="sound-campfire-base"
       src="#sfx-campfire-base"

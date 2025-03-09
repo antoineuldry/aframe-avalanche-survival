@@ -27,7 +27,7 @@ function enterScene() {
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
       <div class="licences">
         <section>
-          <h4>Movement modes support</h4>
+          <h3>Movement modes support</h3>
           <ul>
             <li>
               Desktop – Keyboard for move (WASD or Arrows keys) + Mouse for look
@@ -44,17 +44,15 @@ function enterScene() {
           </ul>
         </section>
         <section>
-          <h4>Source code</h4>
+          <h3>Source code</h3>
           <blockquote>
             <a href="https://github.com/antoineuldry/aframe-avalanche-survival"
               >Github repo</a
             >
           </blockquote>
         </section>
+        <h3>Included</h3>
         <dl>
-          <dt>
-            <i>Included</i>
-          </dt>
           <dt>
             <a href="https://github.com/c-frame/aframe-extras" target="_blank"
               >aframe-extras controls and animation-mixer</a
@@ -120,17 +118,62 @@ function enterScene() {
           </dt>
           <dd>By Ada Rose Cannon under MIT License</dd>
 
+          <hr />
+
+          <h3>3D Models</h3>
+          <h4>Effects</h4>
           <dt>
             <a
-              href="https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e"
+              href="https://sketchfab.com/3d-models/falling-snow-loop-a19b97d7e64548b998eaeb4d8477c24c"
               target="_blank"
-              >VR Gallery</a
             >
+              Falling Snow Loop
+            </a>
           </dt>
           <dd>
             by
-            <a href="https://sketchfab.com/mvrc.art" target="_blank"
-              >Maxim Mavrichev</a
+            <a href="https://sketchfab.com/ElinHohler" target="_blank"
+              >Elin Hohler</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              >CC BY 4.0</a
+            >
+          </dd>
+
+          <hr />
+
+          <h4>Entities</h4>
+          <dt>
+            <a href="https://poly.pizza/m/Bc97C66HKi" target="_blank"> Fox </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a
+              href="https://sketchfab.com/3d-models/low-poly-helicopter-5bbed2de9baa4a13a7faa72653b78b64"
+              target="_blank"
+            >
+              Helicopter
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://sketchfab.com/antonmoek" target="_blank"
+              >Anton Moek</a
             >
             under
             <a
@@ -142,15 +185,16 @@ function enterScene() {
 
           <dt>
             <a
-              href="https://sketchfab.com/3d-models/3d-gallery-for-vr-projects-68f77ed8558c4bd59e0a13e2cc9d1fd1"
+              href="https://sketchfab.com/3d-models/snowman-monster-e49e299a729e43928b5817b6c28158ad"
               target="_blank"
-              >Physic room model</a
             >
+              Snowman-Monster
+            </a>
           </dt>
           <dd>
             by
-            <a href="https://sketchfab.com/tekuto1s" target="_blank"
-              >tekuto1s</a
+            <a href="https://sketchfab.com/Batuhan13" target="_blank"
+              >Batuhan13</a
             >
             under
             <a
@@ -159,6 +203,275 @@ function enterScene() {
               >CC BY 4.0</a
             >
           </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/tQdzbZ1" target="_blank"> Stag </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <hr />
+
+          <h4>Interactives Items</h4>
+          <dt>
+            <a href="https://poly.pizza/m/2g9Jm7kvIU" target="_blank">
+              Backpack
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/FsCIGEfTEs" target="_blank"> Book </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/9-y1lYsX0Lx" target="_blank">
+              Campfire (off)
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Kris%20P" target="_blank">Kris P</a>
+            under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              >CC BY 4.0</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/0vzzmM-t8CP" target="_blank">
+              Campfire (on)
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Poly%20by%20Google" target="_blank"
+              >Poly by Google</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              >CC BY 4.0</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/4fbaKPvM0Ss" target="_blank">
+              Flashlight
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Poly%20by%20Google" target="_blank"
+              >Poly by Google</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              >CC BY 4.0</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/aYdn7ZZaYqa" target="_blank">
+              GPS Emitter (Walkie Talkie)
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Poly%20by%20Google" target="_blank"
+              >Poly by Google</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              >CC BY 4.0</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/aJ2yTQPbS34" target="_blank">
+              Hatchet
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/zeoxo" target="_blank">zeoxo</a>
+            under
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              >CC BY 4.0</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/t8AmON8X5a" target="_blank">
+              Lighter
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/MaverickFX" target="_blank"
+              >MaverickFX</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/ajBNpMsQ8z" target="_blank">
+              Wood Pile
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <hr />
+
+          <h4>Terrain assets</h4>
+          <dt>
+            <a href="https://poly.pizza/m/H4IEAwYl1z" target="_blank">
+              Bush (Snow)
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/SptEoObV5a" target="_blank">
+              Pine Tree 1
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/KdvCshmdXz" target="_blank">
+              Pine Tree 2
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/GHJzMn9XZ5" target="_blank">
+              Terrain
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+
+          <dt>
+            <a href="https://poly.pizza/m/YRJmMnB3xL" target="_blank">
+              Forest
+            </a>
+          </dt>
+          <dd>
+            by
+            <a href="https://poly.pizza/u/Quaternius" target="_blank"
+              >Quaternius</a
+            >
+            under
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              >Public Domain (CC0)</a
+            >
+          </dd>
+          <hr />
         </dl>
       </div>
     </div>

@@ -45,7 +45,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <!-- Sons du monstre -->
+  <!-- TODO : Attach sounds to monster entity -->
   <a-sound
     ref="sound-monster-noise"
     src="#sfx-monster-noise"

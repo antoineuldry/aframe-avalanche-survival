@@ -11,6 +11,8 @@ const props = defineProps({
   isVisible: { type: Boolean, default: true },
 });
 
+// TODO : Attach sound to lighter entity and not campfire
+
 const handleGrab = (event) => {
   // Joue le son de "pickup" global
   const pickupSound = document.querySelector("#sfx-item-pickup");

@@ -46,6 +46,7 @@ watchEffect(() => {
 </script>
 
 <template>
+  <!-- TODO : Attach sound to wolf entity -->
   <a-sound ref="sound-wolves" src="#sfx-wolves" volume="8"></a-sound>
 
   <a-entity

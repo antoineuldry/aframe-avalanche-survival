@@ -17,6 +17,9 @@ const interactionDone = ref(false); // Si l'interaction a déjà eu lieu
 
 const layingUpDownSound = useTemplateRef("sound-laying-up-down");
 
+// TODO : Add sleep effects (closing eye -> shutdown lights progrssively then open it (turn on light progressively but make it hard to see)
+// and block the player's interaction and movement on the position of the rest zone with rotation to snowman-monster initial position
+
 const onPlayerNear = () => {
   isPlayerNear.value = true;
 
@@ -84,6 +87,7 @@ watchEffect(() => {
     ></a-cylinder>
   </a-entity>
 
+  <!-- TODO : Attach sound to RestZone entity -->
   <a-sound ref="sound-laying-up-down" src="#sfx-laying-up-down"></a-sound>
 </template>
 
